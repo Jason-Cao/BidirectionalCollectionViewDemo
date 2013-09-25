@@ -139,7 +139,7 @@
 {
     if (indexPath.section == 1 || indexPath.section == 6) {
         return CGSizeMake(33, 33);
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == 5) {
         if (indexPath.item == 2) {
             return CGSizeMake(44, 44);
         } else return CGSizeMake(55, 55);
