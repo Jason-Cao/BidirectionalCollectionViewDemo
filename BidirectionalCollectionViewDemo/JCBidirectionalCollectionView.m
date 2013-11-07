@@ -25,7 +25,7 @@
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        
         UICollectionViewFlowLayout *myFlowLayout = [[UICollectionViewFlowLayout alloc] init];
         myFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         myFlowLayout.minimumInteritemSpacing = 0;
@@ -36,8 +36,6 @@
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:_collectionView];
         _collectionView.backgroundColor = [UIColor clearColor];
-       
-
     }
     return self;
 }
@@ -50,6 +48,8 @@
     view.frame = self.bounds;
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self insertSubview:view belowSubview:_collectionView];
+//    [self addSubview:view];
+    [self bringSubviewToFront:_collectionView];
     self.bgView = view;
 }
 
@@ -320,10 +320,7 @@
     
     if (cell == nil) {
         cell = [[JCTableViewCell alloc] initWithReuseIdentifier:CellIdentifier delegate:self];
-        
         [self collectionView:cell.collectionView registerCellClasses:registeredCellClasses];
-        
-//        NSLog(@"insert object at index :%d",indexPath.section);
     }
     cell.collectionView.frame = UIEdgeInsetsInsetRect(cell.bounds, [self bidirectionalCollectionView:self scrollContentInsetForSectionAtIndex:indexPath.section]);
     [self manageCollectionView:cell.collectionView forIndex:indexPath.section];
